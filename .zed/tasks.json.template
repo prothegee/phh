@@ -1,0 +1,11 @@
+// help: https://zed.dev/docs/tasks
+[
+    {
+        "label": "build: phh (debug clean)",
+        "command": "rm -rf build;./build-all-debug.sh"
+    },
+    {
+        "label": "build: phh (debug)",
+        "command": "./build-all-debug.sh"
+    }
+]
