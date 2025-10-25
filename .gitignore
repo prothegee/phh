@@ -10,7 +10,10 @@
 /.config
 /.target
 
+.cache
+.git
 .svelte-kit
+.zed
 
 bin
 out
