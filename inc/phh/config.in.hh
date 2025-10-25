@@ -70,4 +70,42 @@
 
 // --------------------------------------------------------- //
 
+#ifndef PHH_ARGON2_FOUND
+#define PHH_ARGON2_FOUND @PHH_ARGON2_FOUND@
+#endif // PHH_ARGON2_FOUND
+
+#ifndef PHH_CURL_FOUND
+#define PHH_CURL_FOUND @PHH_CURL_FOUND@
+#endif // PHH_CURL_FOUND
+
+#ifndef PHH_CURL_EXEC_FOUND
+#define PHH_CURL_EXEC_FOUND @PHH_CURL_EXEC_FOUND@
+#endif // PHH_CURL_EXEC_FOUND
+
+#ifndef PHH_DROGON_FOUND
+#define PHH_DROGON_FOUND @PHH_DROGON_FOUND@
+#endif // PHH_DROGON_FOUND
+
+#ifndef PHH_JSONCPP_FOUND
+#define PHH_JSONCPP_FOUND @PHH_JSONCPP_FOUND@
+#endif // PHH_JSONCPP_FOUND
+
+#ifndef PHH_OPENSSL_FOUND
+#define PHH_OPENSSL_FOUND @PHH_OPENSSL_FOUND@
+#endif // PHH_OPENSSL_FOUND
+
+#ifndef PHH_PYTHON3_FOUND
+#define PHH_PYTHON3_FOUND @PHH_PYTHON3_FOUND@
+#endif // PHH_PYTHON3_FOUND
+
+#ifndef PHH_PYTHON3_EXEC_FOUND
+#define PHH_PYTHON3_EXEC_FOUND @PHH_PYTHON3_EXEC_FOUND@
+#endif // PHH_PYTHON3_EXEC_FOUND
+
+#ifndef PHH_STB_FOUND
+#define PHH_STB_FOUND @PHH_STB_FOUND@
+#endif // PHH_STB_FOUND
+
+// --------------------------------------------------------- //
+
 #endif // PHH_CONFIG_HH
