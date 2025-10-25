@@ -16,6 +16,9 @@ set(PHH_VERSION_RELEASE_DATE
 set(PHH_FEATURES_LIST)
 set(PHH_COMPILER_NAME)
 
+# strict policy
+## C0301: long value in cmake file/s
+
 project(phh)
 
 # options
@@ -59,23 +62,22 @@ if(NOT DEFINED CMAKE_CXX_FLAGS)
 endif()
 
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD 23)
 endif()
-# force c++ standard can't be less 17
-if(${CMAKE_CXX_STANDARD} LESS 17)
-    message(FATAL_ERROR "cxx standard can't be less than c++17")
+# force c++ standard can't be less 23
+if(${CMAKE_CXX_STANDARD} LESS 23)
+    message(FATAL_ERROR "cxx standard can't be less than c++23")
 endif()
-if(${CMAKE_CXX_STANDARD} STRLESS 17)
-    message(FATAL_ERROR "cxx standard can't be less than c++17")
+if(${CMAKE_CXX_STANDARD} STRLESS 23)
+    message(FATAL_ERROR "cxx standard can't be less than c++23")
 endif()
 
 # helper preproc c++ standard if cxx flags is not found
 set(PHH_CXX_STANDARD)
 set(PHH_CXX_STANDARD_ARGS)
-if(MSVC)
+set(PHH_CXX_STANDARD_ARGS "-std=c++${CMAKE_CXX_STANDARD}")
+if (MSVC) # overwrite for msvc windows
     set(PHH_CXX_STANDARD_ARGS "/std:c++${CMAKE_CXX_STANDARD}")
-else()
-    set(PHH_CXX_STANDARD_ARGS "-std=c++${CMAKE_CXX_STANDARD}")
 endif()
 string(FIND
     "${CMAKE_CXX_FLAGS}"
@@ -96,18 +98,25 @@ include(CMakePackageConfigHelpers)
 include(FindPackageHandleStandardArgs)
 
 # build system
+set(PHH_BUILD_SYSTEM)
+set(PHH_IS_LINUX false)
+set(PHH_IS_MACOS false)
+set(PHH_IS_WINDOWS false)
+
 if(LINUX)
-    add_definitions(-D_LINUX)
+    set(PHH_IS_LINUX true)
+    set(PHH_BUILD_SYSTEM "GNU / Linux")
     message(STATUS "build system: linux")
-elseif(WIN32)
-    add_definitions(-D_WIN32)
-    add_definitions(-D_WINDOWS)
-    message(STATUS "build system: windows")
 elseif(APPLE)
-    add_definitions(-D_APPLE)
-    add_definitions(-D_MACOS)
+    set(PHH_IS_MACOS true)
+    set(PHH_BUILD_SYSTEM "Apple MacOS")
     message(STATUS "build system: macos")
+elseif(WIN32)
+    set(PHH_IS_WINDOWS)
+    set(PHH_BUILD_SYSTEM "Windows")
+    message(STATUS "build system: windows")
 else()
+    set(PHH_BUILD_SYSTEM "UNKNOWN")
     # not meant to be
     message(AUTHOR_WARNING "build system: unknown")
 endif()
@@ -115,12 +124,17 @@ endif()
 # package handler
 include(script/cmake/package-handler.conf.cmake)
 
-# library
+# library static
 add_library(${PROJECT_NAME}
     "src/lib.cc"
 )
+# MAYBE: library shared
 
 # compiler options
+set(PHH_GNU false)
+set(PHH_MSVC false)
+set(PHH_CLANG false)
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${PROJECT_NAME} PRIVATE
         -Wall
@@ -140,13 +154,20 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         -Wunused-parameter
         -Wno-deprecated-declarations
     )
+
     set(PHH_COMPILER_NAME "GNU")
+    set(PHH_GNU true)
+    set(PHH_MSVC false)
+    set(PHH_CLANG false)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${PROJECT_NAME} PRIVATE
         /W4
     )
-    add_definitions(-D_MSVC)
+
     set(PHH_COMPILER_NAME "MSVC")
+    set(PHH_GNU false)
+    set(PHH_MSVC true)
+    set(PHH_CLANG false)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "[Cc]lang")
     target_compile_options(${PROJECT_NAME} PRIVATE
         -Wall
@@ -166,8 +187,11 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "[Cc]lang")
         -Wunused-parameter
         -Wno-deprecated-declarations
     )
-    add_definitions(-D_CLANG)
+
     set(PHH_COMPILER_NAME "CLANG")
+    set(PHH_GNU false)
+    set(PHH_MSVC false)
+    set(PHH_CLANG true)
 else()
     message(NOTICE
         "-- ${PROJECT_NAME}:
@@ -176,7 +200,6 @@ else()
     )
     set(PHH_COMPILER_NAME "UNKNOWN")
 endif()
-string(APPEND PHH_FEATURES_LIST "- Compiler         : ${PHH_COMPILER_NAME}\n")
 
 # target link library
 
@@ -190,10 +213,22 @@ if(PHH_BUILD_TOOL)
     #
 endif()
 
-# check last CMAKE_CXX_FLAGS
-string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_FLAGS  : ${CMAKE_CXX_FLAGS}\n")
+configure_file(
+    ${CMAKE_SOURCE_DIR}/inc/phh/config.in.hh
+    ${CMAKE_SOURCE_DIR}/inc/phh/config.hh
+)
+
+# info: compiler info
+string(APPEND PHH_FEATURES_LIST "- Compiler             : ${PHH_COMPILER_NAME}\n")
+# info: build system
+string(APPEND PHH_FEATURES_LIST "- Build system         : ${PHH_BUILD_SYSTEM}\n")
+# info: last CMAKE_CXX_FLAGS
+string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_FLAGS      : ${CMAKE_CXX_FLAGS}\n")
+# info: last CMAKE_CXX_FLAGS
+string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_STANDARD   : ${CMAKE_CXX_STANDARD}\n")
 
 # check status
 message(NOTICE "# ${PROJECT_NAME} configuration status:\n"
     "${PHH_FEATURES_LIST}"
 )
+
