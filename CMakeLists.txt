@@ -14,7 +14,7 @@ set(PHH_VERSION_RELEASE_DATE
 )
 
 set(PHH_FEATURES_LIST)
-set(PHH_COMPILER_NAME)
+set(PHH_CXX_COMPILER_NAME)
 
 # strict policy
 ## C0301: long value in cmake file/s
@@ -166,7 +166,7 @@ string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_STANDARD   : ${CMAKE_CXX_STANDARD}\
 
 # check status
 message(NOTICE "#----------------------------------#")
-message(NOTICE "${PROJECT_NAME} configuration status:\n"
+message(NOTICE "  ${PROJECT_NAME} configuration status\n"
     "${PHH_FEATURES_LIST}"
 )
 

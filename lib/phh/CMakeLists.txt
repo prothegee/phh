@@ -1,4 +1,9 @@
-project(phh)
+project(phh
+    VERSION "${PHH_VERSION_MAJOR}.${PHH_VERSION_MINOR}.${PHH_VERSION_PATCH}"
+    DESCRIPTION "module library treatment for c++ project"
+    HOMEPAGE_URL "https://github.com/prothegee/phh"
+    LANGUAGES CXX
+)
 
 # headers
 # headers functions
@@ -77,7 +82,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         -Wno-deprecated-declarations
     )
 
-    set(PHH_COMPILER_NAME "GNU")
+    set(PHH_CXX_COMPILER_NAME "GNU")
     set(PHH_GNU true)
     set(PHH_MSVC false)
     set(PHH_CLANG false)
@@ -86,7 +91,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         /W4
     )
 
-    set(PHH_COMPILER_NAME "MSVC")
+    set(PHH_CXX_COMPILER_NAME "MSVC")
     set(PHH_GNU false)
     set(PHH_MSVC true)
     set(PHH_CLANG false)
@@ -110,13 +115,13 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "[Cc]lang")
         -Wno-deprecated-declarations
     )
 
-    set(PHH_COMPILER_NAME "CLANG")
+    set(PHH_CXX_COMPILER_NAME "CLANG")
     set(PHH_GNU false)
     set(PHH_MSVC false)
     set(PHH_CLANG true)
 else()
     message(NOTICE "-- ${PROJECT_NAME}: -DCMAKE_CXX_COMPILER_ID is not supported as ${CMAKE_CXX_COMPILER_ID}")
-    set(PHH_COMPILER_NAME "UNKNOWN")
+    set(PHH_CXX_COMPILER_NAME "UNKNOWN")
 endif()
 
 generate_export_header(phh
