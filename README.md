@@ -2,7 +2,7 @@
 
 phh project resource code
 
-> personal cpp library as module treatment
+> personal module library treatement for c++ project
 
 <!-----
 
@@ -11,7 +11,6 @@ __*PACKAGE*__
 - [argon2](https://github.com/P-H-C/phc-winner-argon2)
 - [drogon](https://github.com/drogonframework/drogon)
 - [openssl](https://github.com/openssl/openssl)
-- [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 - [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 - [nanosvg](https://github.com/memononen/nanosvg)
 - [zxing-cpp](https://github.com/zxing-cpp/zxing-cpp)
