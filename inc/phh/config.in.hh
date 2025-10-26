@@ -53,6 +53,16 @@
 #define PHH_IS_WINDOWS @PHH_IS_WINDOWS@
 #endif // PHH_IS_WINDOWS
 
+#ifndef PHH_IS_ANDROID
+// system is android
+#define PHH_IS_ANDROID @PHH_IS_ANDROID@
+#endif // PHH_IS_ANDROID
+
+#ifndef PHH_IS_IOS
+// system is ios
+#define PHH_IS_IOS @PHH_IS_IOS@
+#endif // PHH_IS_IOS
+
 #ifndef PHH_GNU
 // compiler is gnu
 #define PHH_GNU @PHH_GNU@

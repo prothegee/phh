@@ -1,3 +1,6 @@
+# info: seperator
+string(APPEND PHH_FEATURES_LIST "#----------------------------------#\n")
+
 include(${CMAKE_SOURCE_DIR}/script/cmake/package/openssl.conf.cmake)
 include(${CMAKE_SOURCE_DIR}/script/cmake/package/argon2.conf.cmake)
 include(${CMAKE_SOURCE_DIR}/script/cmake/package/jsoncpp.conf.cmake)
