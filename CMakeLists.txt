@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.25)
 
 set(PHH_VERSION_MAJOR
     0
@@ -19,7 +19,7 @@ set(PHH_COMPILER_NAME)
 # strict policy
 ## C0301: long value in cmake file/s
 
-project(phh)
+project(phh-project)
 
 # options
 option(PHH_BUILD_TEST
@@ -76,9 +76,9 @@ endif()
 set(PHH_CXX_STANDARD)
 set(PHH_CXX_STANDARD_ARGS)
 set(PHH_CXX_STANDARD_ARGS "-std=c++${CMAKE_CXX_STANDARD}")
-if (MSVC) # overwrite for msvc windows
-    set(PHH_CXX_STANDARD_ARGS "/std:c++${CMAKE_CXX_STANDARD}")
-endif()
+# if (MSVC) # overwrite for msvc windows
+#     set(PHH_CXX_STANDARD_ARGS "/std:c++${CMAKE_CXX_STANDARD}")
+# endif()
 string(FIND
     "${CMAKE_CXX_FLAGS}"
     "${PHH_CXX_STANDARD_ARGS}"
@@ -102,106 +102,44 @@ set(PHH_BUILD_SYSTEM)
 set(PHH_IS_LINUX false)
 set(PHH_IS_MACOS false)
 set(PHH_IS_WINDOWS false)
+set(PHH_IS_ANDROID false)
+set(PHH_IS_IOS false)
 
 if(LINUX)
     set(PHH_IS_LINUX true)
     set(PHH_BUILD_SYSTEM "GNU / Linux")
     message(STATUS "build system: linux")
+elseif(ANDROID)
+    set(PHH_IS_ANDROID true)
+    set(PHH_BUILD_SYSTEM "Android")
+    message(STATUS "build system: android")
+    message(WARNING "build system is not supported, you are on your own risk")
 elseif(APPLE)
     set(PHH_IS_MACOS true)
     set(PHH_BUILD_SYSTEM "Apple MacOS")
     message(STATUS "build system: macos")
+    message(WARNING "build system is not supported, you are on your own risk")
+
+    if(IOS)
+        set(PHH_IS_IOS true)
+        set(PHH_BUILD_SYSTEM "Apple iOs")
+    endif()
 elseif(WIN32)
     set(PHH_IS_WINDOWS)
     set(PHH_BUILD_SYSTEM "Windows")
-    message(STATUS "build system: windows")
+    message(WARNING "build system is not supported, you are on your own risk")
 else()
     set(PHH_BUILD_SYSTEM "UNKNOWN")
     # not meant to be
     message(AUTHOR_WARNING "build system: unknown")
+    message(WARNING "build system is not supported, you are on your own risk")
 endif()
 
 # package handler
 include(script/cmake/package-handler.conf.cmake)
 
-# library static
-add_library(${PROJECT_NAME}
-    "src/lib.cc"
-)
-# MAYBE: library shared
-
-# compiler options
-set(PHH_GNU false)
-set(PHH_MSVC false)
-set(PHH_CLANG false)
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(${PROJECT_NAME} PRIVATE
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wno-unused-value
-        -Wno-unused-variable
-        -Wno-reorder
-        -Wno-parentheses
-        -Wno-switch
-        -Wno-format
-        -Wno-invalid-offsetof
-        -Wno-multichar
-        -Wno-char-subscripts
-        -Wno-empty-body
-        -Wno-unused-function
-        -Wunused-parameter
-        -Wno-deprecated-declarations
-    )
-
-    set(PHH_COMPILER_NAME "GNU")
-    set(PHH_GNU true)
-    set(PHH_MSVC false)
-    set(PHH_CLANG false)
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(${PROJECT_NAME} PRIVATE
-        /W4
-    )
-
-    set(PHH_COMPILER_NAME "MSVC")
-    set(PHH_GNU false)
-    set(PHH_MSVC true)
-    set(PHH_CLANG false)
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "[Cc]lang")
-    target_compile_options(${PROJECT_NAME} PRIVATE
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wno-unused-value
-        -Wno-unused-variable
-        -Wno-reorder
-        -Wno-parentheses
-        -Wno-switch
-        -Wno-format
-        -Wno-invalid-offsetof
-        -Wno-multichar
-        -Wno-char-subscripts
-        -Wno-empty-body
-        -Wno-unused-function
-        -Wunused-parameter
-        -Wno-deprecated-declarations
-    )
-
-    set(PHH_COMPILER_NAME "CLANG")
-    set(PHH_GNU false)
-    set(PHH_MSVC false)
-    set(PHH_CLANG true)
-else()
-    message(NOTICE
-        "-- ${PROJECT_NAME}:
-        -DCMAKE_CXX_COMPILER_ID is not supported as ${CMAKE_CXX_COMPILER_ID}
-        "
-    )
-    set(PHH_COMPILER_NAME "UNKNOWN")
-endif()
-
-# target link library
+# library: phh
+add_subdirectory(lib/phh _lib)
 
 # test subdir
 if(PHH_BUILD_TEST)
@@ -213,13 +151,10 @@ if(PHH_BUILD_TOOL)
     #
 endif()
 
-configure_file(
-    ${CMAKE_SOURCE_DIR}/inc/phh/config.in.hh
-    ${CMAKE_SOURCE_DIR}/inc/phh/config.hh
-)
-
+# info: seperator
+string(APPEND PHH_FEATURES_LIST "#----------------------------------#\n")
 # info: compiler info
-string(APPEND PHH_FEATURES_LIST "- Compiler             : ${PHH_COMPILER_NAME}\n")
+string(APPEND PHH_FEATURES_LIST "- Compiler             : ${CMAKE_CXX_COMPILER_ID}\n")
 # info: build system
 string(APPEND PHH_FEATURES_LIST "- Build system         : ${PHH_BUILD_SYSTEM}\n")
 # info: last CMAKE_CXX_FLAGS
@@ -228,7 +163,8 @@ string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_FLAGS      : ${CMAKE_CXX_FLAGS}\n")
 string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_STANDARD   : ${CMAKE_CXX_STANDARD}\n")
 
 # check status
-message(NOTICE "# ${PROJECT_NAME} configuration status:\n"
+message(NOTICE "#----------------------------------#")
+message(NOTICE "${PROJECT_NAME} configuration status:\n"
     "${PHH_FEATURES_LIST}"
 )
 

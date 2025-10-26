@@ -44,8 +44,7 @@ node_modules
 
 compile_commands.json
 
-/backend/config.hh
-/library/backend/inc/backend/config.hh
+config.hh
 
 ##
 ## file: exclude
