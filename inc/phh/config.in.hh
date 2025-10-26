@@ -118,4 +118,20 @@
 
 // --------------------------------------------------------- //
 
+#if defined(__GNUC__) || defined(__clang__)
+#ifndef DEPRECATED
+#define DEPRECATED(msg) __attribute__((deprecated(msg)))
+#endif // DEPRECATED GNU & CLANG
+#else
+#ifndef DEPRECATED
+#define DEPRECATED(msg) __declspec(deprecated(msg))
+#endif
+#endif // DEPRECATED MSVC
+
+#ifndef PRAGMA_MESSAGE
+#define PRAGMA_MESSAGE(msg) __pragma(message(msg))
+#endif // PRAGMA_MESSAGE
+
+// --------------------------------------------------------- //
+
 #endif // PHH_CONFIG_HH

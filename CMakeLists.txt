@@ -4,7 +4,7 @@ set(PHH_VERSION_MAJOR
     0
 )
 set(PHH_VERSION_MINOR
-    0
+    1
 )
 set(PHH_VERSION_PATCH
     0
@@ -76,9 +76,9 @@ endif()
 set(PHH_CXX_STANDARD)
 set(PHH_CXX_STANDARD_ARGS)
 set(PHH_CXX_STANDARD_ARGS "-std=c++${CMAKE_CXX_STANDARD}")
-# if (MSVC) # overwrite for msvc windows
-#     set(PHH_CXX_STANDARD_ARGS "/std:c++${CMAKE_CXX_STANDARD}")
-# endif()
+if (MSVC) # overwrite for msvc windows
+    set(PHH_CXX_STANDARD_ARGS "/std:c++${CMAKE_CXX_STANDARD}")
+endif()
 string(FIND
     "${CMAKE_CXX_FLAGS}"
     "${PHH_CXX_STANDARD_ARGS}"
@@ -155,8 +155,10 @@ endif()
 string(APPEND PHH_FEATURES_LIST "#----------------------------------#\n")
 # info: compiler info
 string(APPEND PHH_FEATURES_LIST "- Compiler             : ${CMAKE_CXX_COMPILER_ID}\n")
-# info: build system
-string(APPEND PHH_FEATURES_LIST "- Build system         : ${PHH_BUILD_SYSTEM}\n")
+# info: build sys, test, & tool
+string(APPEND PHH_FEATURES_LIST "- Build sys            : ${PHH_BUILD_SYSTEM}\n")
+string(APPEND PHH_FEATURES_LIST "- Build test           : ${PHH_BUILD_TEST}\n")
+string(APPEND PHH_FEATURES_LIST "- Build tool           : ${PHH_BUILD_TOOL}\n")
 # info: last CMAKE_CXX_FLAGS
 string(APPEND PHH_FEATURES_LIST "- CMAKE_CXX_FLAGS      : ${CMAKE_CXX_FLAGS}\n")
 # info: last CMAKE_CXX_FLAGS
