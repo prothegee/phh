@@ -45,6 +45,7 @@ node_modules
 compile_commands.json
 
 config.hh
+export*.hh
 
 ##
 ## file: exclude
