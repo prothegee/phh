@@ -139,7 +139,7 @@ endif()
 include(script/cmake/package-handler.conf.cmake)
 
 # library: phh
-add_subdirectory(lib/phh _lib)
+add_subdirectory(phh _lib)
 
 # test subdir
 if(PHH_BUILD_TEST)
@@ -148,7 +148,7 @@ endif()
 
 # tool subdir
 if(PHH_BUILD_TOOL)
-    #
+    message(NOTICE "NOTE: -DPHH_BUILD_TOOL is ON")
 endif()
 
 # info: seperator
