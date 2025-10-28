@@ -10,14 +10,14 @@ if(NOT DEFINED PHH_HEADER_CORES_FILES)
     set(PHH_HEADER_CORES_FILES)
 endif()
 list(APPEND PHH_HEADER_CORES_FILES
-    "${CMAKE_SOURCE_DIR}/inc/phh/config.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/error.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/export.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/export_shared.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/export_static.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/numeric.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/size.hh"
-    "${CMAKE_SOURCE_DIR}/inc/phh/string.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/config.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/error.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/export.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/export_shared.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/export_static.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/numeric.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/size.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/string.hh"
 )
 # headers functions
 if(NOT DEFINED PHH_HEADER_FUNCTIONS_FILES)
@@ -32,7 +32,7 @@ if(NOT DEFINED PHH_SOURCE_FILES)
     set(PHH_SOURCE_FILES)
 endif()
 list(APPEND PHH_SOURCE_FILES
-    "${CMAKE_SOURCE_DIR}/src/phh/lib.cc"
+    "${CMAKE_SOURCE_DIR}/phh/src/lib.cc"
     # interfaces
     # modules
 )
@@ -149,23 +149,23 @@ generate_export_header(phh_shared
 )
 
 configure_file(
-    ${CMAKE_SOURCE_DIR}/inc/phh/config.in.hh
-    ${CMAKE_SOURCE_DIR}/inc/phh/config.hh
+    ${CMAKE_SOURCE_DIR}/phh/inc/phh/config.in.hh
+    ${CMAKE_SOURCE_DIR}/phh/inc/phh/config.hh
 )
 
 target_compile_definitions(phh_shared PRIVATE PHH_SHARED)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/inc
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>/inc
+        ${CMAKE_SOURCE_DIR}/phh/inc
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>/phh/inc
 )
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_SOURCE_DIR}/src/phh
-        ${CMAKE_SOURCE_DIR}/src/phh/interfaces
-        ${CMAKE_SOURCE_DIR}/src/phh/modules
+        ${CMAKE_SOURCE_DIR}/phh/src
+        ${CMAKE_SOURCE_DIR}/phh/src/interfaces
+        ${CMAKE_SOURCE_DIR}/phh/src/modules
 )
 
 # each target

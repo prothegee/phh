@@ -4,7 +4,7 @@
 #include <phh/string.hh>
 
 int main() {
-    std::println("start: test_string.cc");
+    std::println("start: unit_test_string.cc");
 
     // check size
     {

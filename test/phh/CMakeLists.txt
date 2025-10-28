@@ -1,4 +1,4 @@
-add_executable(test_string test_string.cc)
+add_executable(unit_test_string unit/unit_test_string.cc)
 
-target_link_libraries(test_string PRIVATE phh)
+target_link_libraries(unit_test_string PRIVATE phh)
 

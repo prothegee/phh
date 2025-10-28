@@ -1,2 +1,0 @@
-this directory is only for phh cmake configuration, the actual file (header & source) are inside inc/phh
-
