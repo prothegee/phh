@@ -6,12 +6,25 @@ project(phh
 )
 
 # headers
+if(NOT DEFINED PHH_HEADER_CORES_FILES)
+    set(PHH_HEADER_CORES_FILES)
+endif()
+list(APPEND PHH_HEADER_CORES_FILES
+    "${CMAKE_SOURCE_DIR}/inc/phh/config.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/error.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/export.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/export_shared.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/export_static.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/numeric.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/size.hh"
+    "${CMAKE_SOURCE_DIR}/inc/phh/string.hh"
+)
 # headers functions
 if(NOT DEFINED PHH_HEADER_FUNCTIONS_FILES)
     set(PHH_HEADER_FUNCTIONS_FILES)
 endif()
 list(APPEND PHH_HEADER_FUNCTIONS_FILES
-    "${CMAKE_SOURCE_DIR}/inc/phh/functions/utility.hh"
+    # tba
 )
 
 # source files
@@ -20,8 +33,6 @@ if(NOT DEFINED PHH_SOURCE_FILES)
 endif()
 list(APPEND PHH_SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/src/phh/lib.cc"
-    # functions
-    "${CMAKE_SOURCE_DIR}/src/phh/functions/utility.cc"
     # interfaces
     # modules
 )
@@ -153,7 +164,7 @@ target_include_directories(${PROJECT_NAME}
 target_sources(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_SOURCE_DIR}/src/phh
-        ${CMAKE_SOURCE_DIR}/src/phh/functions
+        ${CMAKE_SOURCE_DIR}/src/phh/interfaces
         ${CMAKE_SOURCE_DIR}/src/phh/modules
 )
 

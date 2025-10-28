@@ -1,3 +1,25 @@
+/// ### file: config.in.hh
+/// 
+/// ### author: Prana Ron
+/// 
+/// ---------------------------------------------------------
+/// 
+/// ### brief:
+/// config template to generate config.hh
+/// 
+/// ### note:
+/// n/a
+/// 
+/// ---------------------------------------------------------
+/// 
+/// ### copyright:
+/// 
+/// - (c) 2025 Prana Ron // @prothegee // prothegee@proton.me
+/// 
+/// ### contributors:
+/// 
+/// - Prana Ron // @prothegee // prothegee@proton.me
+/// 
 #ifndef PHH_CONFIG_HH
 #define PHH_CONFIG_HH
 
