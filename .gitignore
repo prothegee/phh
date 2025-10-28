@@ -41,6 +41,9 @@ node_modules
 /.zed/*.json
 
 /CMakePresets.json
+/test_*
+
+/dbuild.sh
 
 compile_commands.json
 

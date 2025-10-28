@@ -10,7 +10,7 @@ set(PHH_VERSION_PATCH
     0
 )
 set(PHH_VERSION_RELEASE_DATE
-    20250612
+    20251028
 )
 
 set(PHH_FEATURES_LIST)
@@ -143,7 +143,7 @@ add_subdirectory(lib/phh _lib)
 
 # test subdir
 if(PHH_BUILD_TEST)
-    #
+    add_subdirectory(test/phh _test)
 endif()
 
 # tool subdir
