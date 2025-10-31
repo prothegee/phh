@@ -256,7 +256,7 @@ struct _buffer_t {
 // --------------------------------------------------------- //
 // --------------------------------------------------------- //
 
-/// @brief buffer byte type
+/// @brief buffer byte data type
 ///
 /// @note for binary data
 using buffer_byte_t = _buffer_t<ui8_t>;
