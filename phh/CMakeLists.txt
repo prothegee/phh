@@ -10,14 +10,15 @@ if(NOT DEFINED PHH_HEADER_CORES_FILES)
     set(PHH_HEADER_CORES_FILES)
 endif()
 list(APPEND PHH_HEADER_CORES_FILES
-    "${CMAKE_SOURCE_DIR}/phh/inc/config.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/error.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/export.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/export_shared.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/export_static.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/numeric.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/size.hh"
-    "${CMAKE_SOURCE_DIR}/phh/inc/string.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/config.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/error.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/export.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/export_shared.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/export_static.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/buffer.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/numeric.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/size.hh"
+    "${CMAKE_SOURCE_DIR}/phh/inc/phh/string.hh"
 )
 # headers functions
 if(NOT DEFINED PHH_HEADER_FUNCTIONS_FILES)
@@ -32,7 +33,8 @@ if(NOT DEFINED PHH_SOURCE_FILES)
     set(PHH_SOURCE_FILES)
 endif()
 list(APPEND PHH_SOURCE_FILES
-    "${CMAKE_SOURCE_DIR}/phh/src/lib.cc"
+    # core
+    "${CMAKE_SOURCE_DIR}/phh/src/phh/lib.cc"
     # interfaces
     # modules
 )
@@ -137,15 +139,15 @@ endif()
 
 generate_export_header(phh
     EXPORT_FILE_NAME
-        ${CMAKE_SOURCE_DIR}/inc/phh/export.hh
+        ${CMAKE_SOURCE_DIR}/phh/inc/phh/export.hh
 )
 generate_export_header(phh_static
     EXPORT_FILE_NAME
-        ${CMAKE_SOURCE_DIR}/inc/phh/export_static.hh
+        ${CMAKE_SOURCE_DIR}/phh/inc/phh/export_static.hh
 )
 generate_export_header(phh_shared
     EXPORT_FILE_NAME
-        ${CMAKE_SOURCE_DIR}/inc/phh/export_shared.hh
+        ${CMAKE_SOURCE_DIR}/phh/inc/phh/export_shared.hh
 )
 
 configure_file(
@@ -163,9 +165,9 @@ target_include_directories(${PROJECT_NAME}
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        ${CMAKE_SOURCE_DIR}/phh/src
-        ${CMAKE_SOURCE_DIR}/phh/src/interfaces
-        ${CMAKE_SOURCE_DIR}/phh/src/modules
+        ${CMAKE_SOURCE_DIR}/phh/src/phh
+        ${CMAKE_SOURCE_DIR}/phh/src/phh/interfaces
+        ${CMAKE_SOURCE_DIR}/phh/src/phh/modules
 )
 
 # each target
