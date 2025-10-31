@@ -37,7 +37,14 @@ using ui32_t = uint32_t;
 using ui64_t = uint64_t;
 
 using f32_t = float;
-using f64_t = float;
+using f64_t = double;
+
+#ifndef PHH_BOOL_T
+#define PHH_BOOL_T
+enum bool_t : i8_t {
+    false_t = 0, true_t = 1
+}; // bool_t
+#endif // PHH_BOOL_T
 
 } // namespace phh
 
