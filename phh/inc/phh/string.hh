@@ -30,6 +30,20 @@
 
 namespace phh {
 
+#ifndef PHH_CHAR_T
+#define PHH_CHAR_T
+/// @brief alias type for char
+using char_t = char;
+#endif // PHH_CHAR_T
+
+#ifndef PHH_UCHAR_T
+#define PHH_UCHAR_T
+/// @brief alias type for unsigned char
+using uchar_t = unsigned char;
+#endif // PHH_UCHAR_T
+
+// --------------------------------------------------------- //
+
 /// @brief explicit dynamic size string type structure
 struct _dynamic_str_t {
     char* data = nullptr;
@@ -257,7 +271,7 @@ struct _fixed_str_t {
     /// @brief actual data size that already stored
     /// 
     /// @return size_t
-    constexpr size_t data_length() const { size_t i = 0; while (i < N && data[i]) i++; return i; }
+    constexpr size_t data_size() const { size_t i = 0; while (i < N && data[i]) i++; return i; }
 
     /// @brief actual data size in this type that able to store
     /// 
@@ -354,6 +368,69 @@ using str64_t = _fixed_str_t<PHH_SIZE_64_WIDTH>;
 
 /// @brief explicit fixed 128 width string
 using str128_t = _fixed_str_t<PHH_SIZE_128_WIDTH>;
+
+// --------------------------------------------------------- //
+// --------------------------------------------------------- //
+
+#ifndef PHH_BASE64_CHARS
+#define PHH_BASE64_CHARS
+/// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+/// abcdefghijklmnopqrstuvwxyz
+/// 0123456789+/
+inline static const str_t BASE64_CHARS("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+#endif // PHH_BASE64_CHARS
+
+#ifndef PHH_NUMERIC_STRING
+#define PHH_NUMERIC_STRING
+/// 0123456789
+inline static const str_t NUMERIC_STRING("0123456789");
+#endif // PHH_NUMERIC_STRING
+
+#ifndef PHH_ALPHABET
+#define PHH_ALPHABET
+/// abcdefghijklmnopqrstuvwxyz
+/// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+inline static const str_t ALPHABET("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+#endif // PHH_ALPHABET
+
+#ifndef PHH_ALPHANUMERIC
+#define PHH_ALPHANUMERIC
+/// abcdefghijklmnopqrstuvwxyz
+/// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+/// 0123456789
+inline static const str_t ALPHANUMERIC("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+#endif // PHH_ALPHANUMERIC
+
+#ifndef PHH_SPECIAL_CHARACTERS
+#define PHH_SPECIAL_CHARACTERS
+/* ~!@#$%^&*()_+{}|:\"<>?`-=[]';,./\\ */
+inline static const str_t SPECIAL_CHARACTERS("~!@#$%^&*()_+{}|:\"<>?`-=[]';,./\\");
+#endif // PHH_SPECIAL_CHARACTERS
+
+#ifndef PHH_ALPHANUMERIC_WITH_SPECIAL_CHARACTERS
+#define PHH_ALPHANUMERIC_WITH_SPECIAL_CHARACTERS
+/*
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+0123456789
+~!@#$%^&*()_+{}|:\"<>?`-=[]';,./\\
+*/
+inline static const str_t ALPHANUMERIC_WITH_SPECIAL_CHARACTERS("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+{}|:\"<>?`-=[]';,./\\");
+#endif // PHH_ALPHANUMERIC_WITH_SPECIAL_CHARACTERS
+
+#ifndef PHH_BASE36_DIGITS
+#define PHH_BASE36_DIGITS
+/// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+/// 0123456789
+inline static const str_t BASE36_DIGITS("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+#endif // PHH_BASE36_DIGITS
+
+#ifndef PHH_BASE36_DIGITS_HEX
+#define PHH_BASE36_DIGITS_HEX
+/// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+/// 0123456789
+inline static const char_t BASE36_DIGITS_HEX[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+#endif // PHH_BASE36_DIGITS_HEX
 
 } // namespace phh
 
