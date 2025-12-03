@@ -4,4 +4,5 @@
 #include <phh/numeric.hh>
 #include <phh/size.hh>
 #include <phh/string.hh>
+#include <phh/uuid.hh>
 
