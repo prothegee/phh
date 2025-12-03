@@ -1,7 +1,7 @@
 set(PHH_CURL_FOUND false)
 set(PHH_CURL_EXEC_FOUND false)
 
-find_package(CURL CONFIG)
+find_package(CURL)
 
 if(CURL_FOUND)
     set(PHH_CURL_FOUND true)

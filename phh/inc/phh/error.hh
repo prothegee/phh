@@ -28,7 +28,8 @@ namespace phh {
 
 enum class error_ec : i8_t {
     undefined,
-    wrong_data,
+	return_ok,
+	return_error,
 }; // enum class error_ec
 
 } // namespace phh
