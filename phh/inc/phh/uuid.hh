@@ -22,11 +22,11 @@
 /// 
 #ifndef PHH_UUID_HH
 #define PHH_UUID_HH
-#include "numeric.hh"
-#include "string.hh"
+// #include "numeric.hh"
+// #include "string.hh"
 #include "buffer.hh"
 
-#include <array>
+// #include <array>
 
 namespace phh {
 
@@ -45,7 +45,8 @@ struct uuid_v1_t {
     /// bytes as if
     buffer_byte_t data;
 
-    explicit constexpr uuid_v1_t() {
+    explicit constexpr uuid_v1_t(buffer_byte_t _data)
+		: data(_data) {
         // TODO: default constructor
     }
 
@@ -96,7 +97,8 @@ struct uuid_v4_t {
     /// bytes as if
     buffer_byte_t data;
 
-    explicit constexpr uuid_v4_t() {
+    explicit constexpr uuid_v4_t(buffer_byte_t _data)
+		: data(_data) {
         // TODO: default constructor
     }
 
@@ -144,7 +146,8 @@ struct uuid_v7_t {
     /// bytes as if
     buffer_byte_t data;
 
-    explicit constexpr uuid_v7_t() {
+    explicit constexpr uuid_v7_t(buffer_byte_t _data)
+		: data(_data) {
         // TODO: default constructor
     }
 
