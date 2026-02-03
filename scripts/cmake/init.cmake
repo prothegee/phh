@@ -1,2 +1,2 @@
-include(${CMAKE_SOURCE_DIR}/scripts/cmake/find-openssl.cmake)
-include(${CMAKE_SOURCE_DIR}/scripts/cmake/find-jsoncpp.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/openssl.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/jsoncpp.cmake)
