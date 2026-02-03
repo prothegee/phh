@@ -1,9 +1,0 @@
-[
-    {
-        "label": "run: backend-handler (debug)",
-        "request": "launch",
-        "adapter": "CodeLLDB",
-        "program": "$ZED_WORKTREE_ROOT/build/debug/backend-handler",
-        "cwd": "$ZED_WORKTREE_ROOT/build/debug"
-    }
-]
