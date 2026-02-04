@@ -1,0 +1,6 @@
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/curl.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/argon2.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/openssl.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/jsoncpp.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/cryptopp.cmake)
+include(${CMAKE_SOURCE_DIR}/scripts/cmake/packages/rapidjson.cmake)

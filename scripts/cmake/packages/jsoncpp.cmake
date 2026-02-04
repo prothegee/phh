@@ -1,1 +1,6 @@
 message(NOTICE "TODO: find jsoncpp")
+if(PHH_USE_JSONCPP)
+    set(PHH_USE_JSONCPP true)
+else()
+    set(PHH_USE_JSONCPP false)
+endif()

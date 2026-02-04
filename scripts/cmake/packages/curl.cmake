@@ -1,0 +1,6 @@
+message(NOTICE "TODO: find curl")
+if(PHH_USE_CURL)
+    set(PHH_USE_CURL true)
+else()
+    set(PHH_USE_CURL false)
+endif()
