@@ -1,0 +1,6 @@
+message(NOTICE "TODO: find rapidjson")
+if(PHH_USE_RAPIDJSON)
+    set(PHH_USE_RAPIDJSON true)
+else()
+    set(PHH_USE_RAPIDJSON false)
+endif()
