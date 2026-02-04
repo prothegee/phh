@@ -1,3 +1,7 @@
+if(NOT LINUX)
+    message(AUTHOR_WARNING "none linux platform is not officially support")
+endif()
+
 if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
@@ -21,9 +25,14 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 
 if(NOT DEFINED CMAKE_CXX_FLAGS)
-    if(MSVC)
-        set(CMAKE_CXX_FLAGS "/std:c++${CMAKE_CXX_STANDARD}")
-    else()
-        set(CMAKE_CXX_FLAGS "-std=c++${CMAKE_CXX_STANDARD}")
-    endif()
+    set(CMAKE_CXX_FLAGS "-std=c++${CMAKE_CXX_STANDARD}")
+    # future use
+    # if(MSVC)
+    #     set(CMAKE_CXX_FLAGS "/std:c++${CMAKE_CXX_STANDARD}")
+    # endif()
+endif()
+
+# force c++23
+if(CMAKE_CXX_STANDARD LESS 23)
+    message(FATAL_ERROR "PHH ERROR: this project meant to be used with c++23 or greater")
 endif()
