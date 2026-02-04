@@ -1,1 +1,6 @@
 message(NOTICE "TODO: find openssl")
+if(PHH_USE_OPENSSL)
+    set(PHH_USE_OPENSSL true)
+else()
+    set(PHH_USE_OPENSSL false)
+endif()

@@ -49,6 +49,8 @@ export*.h
 export*.hh
 export*.hpp
 
+test_common.*
+
 ##
 ## file: exclude
 ##

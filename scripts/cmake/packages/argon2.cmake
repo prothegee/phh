@@ -1,0 +1,6 @@
+message(NOTICE "TODO: find argon2")
+if(PHH_USE_ARGON2)
+    set(PHH_USE_ARGON2 true)
+else()
+    set(PHH_USE_ARGON2 false)
+endif()

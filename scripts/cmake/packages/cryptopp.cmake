@@ -1,0 +1,6 @@
+message(NOTICE "TODO: find cryptopp")
+if(PHH_USE_CRYPTOPP)
+    set(PHH_USE_CRYPTOPP true)
+else()
+    set(PHH_USE_CRYPTOPP false)
+endif()
