@@ -31,6 +31,10 @@
 #define PHH_USE_RAPIDJSON @PHH_USE_RAPIDJSON@
 #endif // PHH_USE_RAPIDJSON
 
+#ifndef PHH_USE_ZXINGCPP
+#define PHH_USE_ZXINGCPP @PHH_USE_ZXINGCPP@
+#endif // PHH_USE_ZXINGCPP
+
 namespace phh {
 } // namespace phh
 
