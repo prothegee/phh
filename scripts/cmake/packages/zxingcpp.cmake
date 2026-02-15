@@ -1,0 +1,6 @@
+message(NOTICE "TODO: find zxingcpp")
+if(PHH_USE_ZXINGCPP)
+    set(PHH_USE_ZXINGCPP true)
+else()
+    set(PHH_USE_ZXINGCPP false)
+endif()

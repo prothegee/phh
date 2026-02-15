@@ -14,7 +14,8 @@ cmake -S . -B build/debug -G "Ninja" \
     -DPHH_USE_OPENSSL=ON \
     -DPHH_USE_JSONCPP=ON \
     -DPHH_USE_CRYPTOPP=ON \
-    -DPHH_USE_RAPIDJSON=ON;
+    -DPHH_USE_RAPIDJSON=ON \
+    -DPHH_USE_ZXINGCPP=ON;
 
 ln -sf ./build/debug/compile_commands.json ./;
 
