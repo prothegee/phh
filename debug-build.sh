@@ -1,9 +1,12 @@
 #!/usr/bin/sh
 set -e;
 
+BUILD_PATH="build/debug";
+BUILD_TYPE="Debug";
+
 # this is default build for debug
-cmake -S . -B build/debug -G "Ninja" \
-    -DCMAKE_BUILD_TYPE=Debug \
+cmake -S . -B $BUILD_PATH -G "Ninja" \
+    -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
     -DCMAKE_CXX_STANDARD=23 \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
     -DBUILD_TESTS=ON \
@@ -17,6 +20,6 @@ cmake -S . -B build/debug -G "Ninja" \
     -DPHH_USE_RAPIDJSON=ON \
     -DPHH_USE_ZXINGCPP=ON;
 
-ln -sf ./build/debug/compile_commands.json ./;
+ln -sf $BUILD_PATH/compile_commands.json ./;
 
-cmake --build build/debug --target all --config Debug -- -j$(nproc);
+cmake --build $BUILD_PATH --target all --config $BUILD_TYPE -- -j$(nproc);
