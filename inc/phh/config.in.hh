@@ -35,6 +35,35 @@
 #define PHH_USE_ZXINGCPP @PHH_USE_ZXINGCPP@
 #endif // PHH_USE_ZXINGCPP
 
+// --------------------------------------------------------- //
+
+#if defined(__GNUC__) || defined(__clang__)
+#ifndef DEPRECATED
+#define DEPRECATED(msg) __attribute__((deprecated(msg)))
+#endif // DEPRECATED
+
+#ifndef PRAGMA_MESSAGE_IMPL
+#ifndef PRAGMA_MESSAGE
+#define PRAGMA_MESSAGE_IMPL(str) _Pragma(#str)
+// compiler independetn message
+#define PRAGMA_MESSAGE(msg) PRAGMA_MESSAGE_IMPL(message msg)
+#endif // PRAGMA_MESSAGE
+#endif // PRAGMA_MESSAGE_IMPL
+#elif defined(_MSC_VER)
+#ifndef DEPRECATED
+#define DEPRECATED(msg) __declspec(deprecated(msg))
+#endif // DEPRECATED
+
+#ifndef PRAGMA_MESSAGE
+// compiler independetn message
+#define PRAGMA_MESSAGE(msg) __pragma(message(msg))
+#endif // PRAGMA_MESSAGE
+#else
+// n/a
+#endif
+
+// --------------------------------------------------------- //
+
 namespace phh {
 } // namespace phh
 
