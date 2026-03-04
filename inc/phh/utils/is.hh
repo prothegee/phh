@@ -52,7 +52,7 @@ PHH_EXPORT bool numeric(const std::string &input);
 /// @return bool
 PHH_EXPORT bool numericUnnsigned(const std::string &input);
 
-/// @brief check if input is numeric unsigned or not
+/// @brief check if input is numeric decimal or not
 ///
 /// @param input
 ///
@@ -62,7 +62,5 @@ PHH_EXPORT bool numericDecimal(const std::string &input);
 } // namespace is
 } // namespace utils
 } // namespace phh
-
-// TODO
 
 #endif // PHH_UTILS_IS_HH
