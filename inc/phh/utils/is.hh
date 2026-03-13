@@ -36,28 +36,28 @@ namespace is {
 /// @param file_path
 ///
 /// @return bool
-PHH_EXPORT bool fileExists(const std::string &file_path);
+bool file_exists(const std::string &file_path);
 
 /// @brief check if input is numeric or not
 ///
 /// @param input
 ///
 /// @return bool
-PHH_EXPORT bool numeric(const std::string &input);
+bool numeric(const std::string &input);
 
 /// @brief check if input is numeric unsigned or not
 ///
 /// @param input
 ///
 /// @return bool
-PHH_EXPORT bool numericUnnsigned(const std::string &input);
+bool numeric_unsigned(const std::string &input);
 
 /// @brief check if input is numeric decimal or not
 ///
 /// @param input
 ///
 /// @return bool
-PHH_EXPORT bool numericDecimal(const std::string &input);
+bool numeric_decimal(const std::string &input);
 
 } // namespace is
 } // namespace utils
