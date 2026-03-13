@@ -8,7 +8,7 @@ namespace phh {
 namespace utils {
 namespace is {
 
-bool fileExists(const std::string &file_path) {
+bool file_exists(const std::string &file_path) {
     std::ifstream file(file_path);
     return file.good() ? true : false;
 }
@@ -58,7 +58,7 @@ bool numeric(const std::string &input) {
     return true;
 }
 
-bool numericUnsigned(const std::string &input) {
+bool numeric_unsigned(const std::string &input) {
     try {
         if (input.empty() || input[0] == '-') {
             return false;
@@ -86,7 +86,7 @@ bool numericUnsigned(const std::string &input) {
     return true;
 }
 
-bool numericDecimal(const std::string &input) {
+bool numeric_decimal(const std::string &input) {
     try {
         if (input.empty()) {
             return false;
