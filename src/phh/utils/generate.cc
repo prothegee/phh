@@ -1,11 +1,11 @@
 #include <atomic>
 #include <chrono>
-#include <phh/utils/gen.hh>
+#include <phh/utils/generate.hh>
 #include <random>
 
 namespace phh {
 namespace utils {
-namespace gen {
+namespace generate {
 
 void secure_random_bytes(uint8_t *dst, size_t len) {
     static thread_local std::random_device rd;
@@ -25,6 +25,6 @@ uint64_t monotonic_counter() {
     return counter.fetch_add(1, std::memory_order_relaxed) & 0x0FFF;
 }
 
-} // namespace gen
+} // namespace generate
 } // namespace utils
 } // namespace phh

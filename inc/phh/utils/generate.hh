@@ -1,4 +1,4 @@
-/// ### file: gen
+/// ### file: generateerate.hh
 ///
 /// ### author: Prana Ron
 ///
@@ -20,14 +20,14 @@
 ///
 /// - Prana Ron // @prothegee // prothegee@proton.me
 ///
-#ifndef PHH_UTILS_GEN_HH
-#define PHH_UTILS_GEN_HH
+#ifndef PHH_UTILS_GENERATE_HH
+#define PHH_UTILS_GENERATE_HH
 #include <cstddef>
 #include <cstdint>
 
 namespace phh {
 namespace utils {
-namespace gen {
+namespace generate {
 
 /// @brief generate random bytes to dst param
 ///
@@ -38,8 +38,8 @@ uint64_t unix_timestamp_ms();
 
 uint64_t monotonic_counter();
 
-} // namespace gen
+} // namespace generate
 } // namespace utils
 } // namespace phh
 
-#endif // PHH_UTILS_GEN_HH
+#endif // PHH_UTILS_GENERATE_HH
