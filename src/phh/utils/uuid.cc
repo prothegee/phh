@@ -105,7 +105,7 @@ UUID v4() {
 }
 
 UUID v7() {
-std::array<uint8_t, 16> bytes{};
+    std::array<uint8_t, 16> bytes{};
     uint64_t ts_ms = phh::utils::gen::unix_timestamp_ms();
 
     // big-endian 48-bit timestamp in bytes 0-5
@@ -113,7 +113,7 @@ std::array<uint8_t, 16> bytes{};
     bytes[1] = static_cast<uint8_t>((ts_ms >> 32) & 0xFF);
     bytes[2] = static_cast<uint8_t>((ts_ms >> 24) & 0xFF);
     bytes[3] = static_cast<uint8_t>((ts_ms >> 16) & 0xFF);
-    bytes[4] = static_cast<uint8_t>((ts_ms >> 8)  & 0xFF);
+    bytes[4] = static_cast<uint8_t>((ts_ms >> 8) & 0xFF);
     bytes[5] = static_cast<uint8_t>(ts_ms & 0xFF);
 
     // random + monotonic counter for sub-millisecond uniqueness

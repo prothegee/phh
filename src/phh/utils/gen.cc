@@ -1,7 +1,7 @@
+#include <atomic>
+#include <chrono>
 #include <phh/utils/gen.hh>
 #include <random>
-#include <chrono>
-#include <atomic>
 
 namespace phh {
 namespace utils {
@@ -16,7 +16,8 @@ void secure_random_bytes(uint8_t *dst, size_t len) {
 
 uint64_t unix_timestamp_ms() {
     return std::chrono::duration_cast<std::chrono::milliseconds>(
-            std::chrono::system_clock::now().time_since_epoch()).count();
+               std::chrono::system_clock::now().time_since_epoch())
+        .count();
 }
 
 uint64_t monotonic_counter() {
